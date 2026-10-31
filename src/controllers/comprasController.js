@@ -1,9 +1,9 @@
-const ventaModel = require('../models/ventasModel');
+const compraModel = require('../models/comprasModel');
 
 module.exports = {
 
-    getVentas: (req, res) => {
-        ventaModel.getVentas((err, result) => {
+    getCompras: (req, res) => {
+        compraModel.getCompras((err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
@@ -12,23 +12,23 @@ module.exports = {
         });
     },
 
-    getVentaById: (req, res) => {
+    getCompraById: (req, res) => {
         const { id } = req.params;
-        ventaModel.getVentaById(id, (err, result) => {
+        compraModel.getCompraById(id, (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
             if (result.length === 0) {
-                res.status(404).json({ message: 'Venta no encontrada' });
+                res.status(404).json({ message: 'Compra no encontrada' });
                 return;
             }
             res.status(200).json({ data: result });
         });
     },
 
-    getVentasDetalladas: (req, res) => {
-        ventaModel.getVentasDetalladas((err, result) => {
+    getComprasDetalladas: (req, res) => {
+        compraModel.getComprasDetalladas((err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
@@ -37,45 +37,45 @@ module.exports = {
         });
     },
 
-    postVenta: (req, res) => {
-        const { codigo, cliente_id, estado, metodo_pago, observaciones } = req.body;
-        ventaModel.postVenta(codigo, cliente_id, estado, metodo_pago, observaciones, (err, result) => {
+    postCompra: (req, res) => {
+        const { codigo, cliente_id, estado, metodo_pago } = req.body;
+        compraModel.postCompra(codigo, cliente_id, estado, metodo_pago, (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
-            res.status(201).json({ message: 'Venta creada correctamente', data: { idInsertado: result } });
+            res.status(201).json({ message: 'Compra creada correctamente', data: { idInsertado: result } });
         });
     },
 
-    putVenta: (req, res) => {
+    putCompra: (req, res) => {
         const { id } = req.params;
-        const { codigo, cliente_id, estado, metodo_pago, observaciones } = req.body;
-        ventaModel.putVenta(id, codigo, cliente_id, estado, metodo_pago, observaciones, (err, result) => {
+        const { codigo, cliente_id, estado, metodo_pago } = req.body;
+        compraModel.putCompra(id, codigo, cliente_id, estado, metodo_pago, (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
             if (result.affectedRows === 0) {
-                res.status(404).json({ message: 'Venta no encontrada' });
+                res.status(404).json({ message: 'Compra no encontrada' });
                 return;
             }
-            res.status(200).json({ message: 'Venta actualizada correctamente' });
+            res.status(200).json({ message: 'Compra actualizada correctamente' });
         });
     },
 
-    deleteVenta: (req, res) => {
+    deleteCompra: (req, res) => {
         const { id } = req.params;
-        ventaModel.deleteVenta(id, (err, result) => {
+        compraModel.deleteCompra(id, (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
             if (result.affectedRows === 0) {
-                res.status(404).json({ message: 'Venta no encontrada' });
+                res.status(404).json({ message: 'Compra no encontrada' });
                 return;
             }
-            res.status(200).json({ message: 'Venta eliminada correctamente' });
+            res.status(200).json({ message: 'Compra eliminada correctamente' });
         });
     }
 

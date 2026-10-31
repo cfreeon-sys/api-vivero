@@ -1,4 +1,3 @@
-
 const plantaModel = require('../models/plantasModel');
 
 module.exports = {
@@ -42,7 +41,6 @@ module.exports = {
     },
 
     postPlanta: (req, res) => {
-
         console.log('Datos recibidos:', req.body);
 
         if (!req.body) {

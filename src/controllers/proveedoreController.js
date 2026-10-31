@@ -28,8 +28,8 @@ module.exports = {
     },
 
     postProveedor: (req, res) => {
-        const { nit, nombre, telefono, correo, direccion, estado } = req.body;
-        proveedorModel.postProveedor(nit, nombre, telefono, correo, direccion, estado, (err, result) => {
+        const { nombre, telefono, correo, direccion, estado } = req.body;
+        proveedorModel.postProveedor(nombre, telefono, correo, direccion, estado, (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
@@ -40,8 +40,8 @@ module.exports = {
 
     putProveedor: (req, res) => {
         const { id } = req.params;
-        const { nit, nombre, telefono, correo, direccion, estado } = req.body;
-        proveedorModel.putProveedor(id, nit, nombre, telefono, correo, direccion, estado, (err, result) => {
+        const { nombre, telefono, correo, direccion, estado } = req.body;
+        proveedorModel.putProveedor(id, nombre, telefono, correo, direccion, estado, (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;

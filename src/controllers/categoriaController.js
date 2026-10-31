@@ -28,7 +28,7 @@ module.exports = {
     },
 
     postCategoria: (req, res) => {
-        const { codigo, nombre, descripcion, estado } = req.body || {};
+        const { codigo, nombre, descripcion, estado } = req.body;
         categoriaModel.postCategoria(codigo, nombre, descripcion, estado, (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -40,13 +40,8 @@ module.exports = {
 
     putCategoria: (req, res) => {
         const { id } = req.params;
+        const { codigo, nombre, descripcion, estado } = req.body;
         
-        // --- ESTO TE MOSTRARÁ QUÉ LLEGA EN LA TERMINAL ---
-        console.log("LO QUE LLEGA EN req.body:", req.body);
-        // ------------------------------------------------
-
-        const { codigo, nombre, descripcion, estado } = req.body || {};
-
         categoriaModel.putCategoria(id, codigo, nombre, descripcion, estado, (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
